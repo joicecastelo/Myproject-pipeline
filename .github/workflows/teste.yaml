@@ -43,9 +43,9 @@ jobs:
 
 
 
-security_scan:
-    name: Security Scan
-    runs-on: ubuntu-20.04
+  security_pipe:
+    name: Security pipe
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
