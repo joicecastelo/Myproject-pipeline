@@ -43,8 +43,8 @@ jobs:
 
 
 
-  security_pipe:
-    name: Security pipe
+  security_scan:
+    name: Security Scan
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
@@ -79,7 +79,7 @@ jobs:
   create_ecr_registry:
     name: Deploy ECR Registry in AWS
     runs-on: ubuntu-latest
-    needs: [unit_testing, security_pipe, terraform_scripts]
+    needs: [unit_testing, security_scan, terraform_scripts]
     steps:
 
     - name: Check out code
