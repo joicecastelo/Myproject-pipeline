@@ -58,7 +58,8 @@ jobs:
         trivy-config: trivy.yaml
 
 
-   terraform_scripts:
+
+  terraform_scripts:
     name: pipe Terraform Scripts
     runs-on: ubuntu-latest
     steps:
