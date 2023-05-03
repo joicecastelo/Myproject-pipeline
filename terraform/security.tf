@@ -1,3 +1,5 @@
+
+/*
 #grupo de segrança para ALB
 
 resource "aws_security_group" "lb_security" {
@@ -10,6 +12,7 @@ resource "aws_security_group" "lb_security" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "What does this rule enable"
 
   }
 
@@ -32,7 +35,7 @@ resource "aws_security_group" "lb_security" {
 
 resource "aws_security_group" "ecs_security" {
   name = "ecs-tasks-security"
-  #description = "allow inbound acess from Athe LB only"
+  description = "allow inbound acess from Athe LB only"
   vpc_id = aws_vpc.project_ecs.id
 
   ingress {
@@ -40,6 +43,7 @@ resource "aws_security_group" "ecs_security" {
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.lb_security.id]
+    description = "What does this rule enable"
 
   }
 
@@ -56,3 +60,5 @@ resource "aws_security_group" "ecs_security" {
     Name = "ECS security Group"
   }
 }
+
+*/

@@ -21,18 +21,30 @@ terraform {
 
 resource "aws_ecr_repository" "my_second_repo" {
   name                 = "my-second-repo" # Nome do meu repositório
-  image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "IMMUTABLE"
+
+  encryption_configuration {
+  encryption_type = "KMS"
+  
+ }
+
+ image_scanning_configuration {
+   scan_on_push = true
+ } 
 }
 
 
 
-
+/*
 
 #Criar cluster
 resource "aws_ecs_cluster" "my_cluster" {
   name = "my-cluster" # Nome do cluster
 
-
+setting {
+   name  = "containerInsights"
+   value = "enabled"
+ }
 }
 
 
@@ -145,3 +157,5 @@ output "aws_ecr_repository_url" {
  value = aws_ecr_repository.my_second_repo.repository_url
 
 }
+
+*/
