@@ -30,7 +30,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/joice/myproject/Pipeline/rio-academy-base-api/api/venv"
+set -gx VIRTUAL_ENV "/home/joice/terraform/Myproject-pipeline/api/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

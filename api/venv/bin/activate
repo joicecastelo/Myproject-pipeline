@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/joice/myproject/Pipeline/rio-academy-base-api/api/venv"
+VIRTUAL_ENV="/home/joice/terraform/Myproject-pipeline/api/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
