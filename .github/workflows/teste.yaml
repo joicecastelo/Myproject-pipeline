@@ -42,6 +42,7 @@ jobs:
           pytest
 
 
+
 security_scan:
     name: Security Scan
     runs-on: ubuntu-20.04
