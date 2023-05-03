@@ -42,9 +42,9 @@ jobs:
           pytest
 
 
-security_pip:
-    name: Security pip
-    runs-on: ubuntu-22.04
+security_scan:
+    name: Security Scan
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
