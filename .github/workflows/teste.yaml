@@ -72,5 +72,15 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: terraform/ecr_terraform
+          directory: terraform/main
           framework: terraform 
+
+
+  create_ecr_registry:
+    name: Deploy ECR Registry in AWS
+    runs-on: ubuntu-latest
+    needs: [unit_testing, security_pipe, terraform_scripts]
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v2
