@@ -217,14 +217,14 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      working-directory: terraform/scrips
+      working-directory: terraform/Arquitetura
       run: terraform init
 
     - name: Terraform Validate
       env:
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      working-directory: terraform/scrips
+      working-directory: terraform/Arquitetura
       run: terraform validate -no-color
 
     - name: Terraform Plan
@@ -236,7 +236,7 @@ jobs:
         # Docker Image to deploy through an ECS Task 
         TF_VAR_docker_image_name: ${{ needs.create_ecr_registry.outputs.aws_ecr_repository_url }}:${{ needs.build.outputs.ecr_image_tag }}
       id: plan
-      working-directory: terraform/scrips
+      working-directory: terraform/Arquitetura
       run: |
         echo "Docker Image Name: $TF_VAR_docker_image_name"
         terraform plan -no-color -input=false
@@ -255,7 +255,7 @@ jobs:
         TF_VAR_aws_secret_access_key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # Docker Image to deploy through an ECS Task 
         TF_VAR_docker_image_name: ${{ needs.create_ecr_registry.outputs.aws_ecr_repository_url }}:${{ needs.build.outputs.ecr_image_tag }}
-      working-directory: terraform/scrips
+      working-directory: terraform/Arquitetura
       run: |
         echo "Docker Image Name: $TF_VAR_docker_image_name"
         terraform apply -auto-approve
