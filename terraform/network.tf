@@ -1,5 +1,4 @@
 
-/*
 #-------Create VPC 
 resource "aws_flow_log" "flow" {
   iam_role_arn    = "arn"
@@ -156,4 +155,3 @@ resource "aws_route_table" "public_b" {
   }
 }
 
-*/

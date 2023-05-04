@@ -17,7 +17,7 @@ terraform {
 }
 
 
-/*
+
 
 #Criar cluster
 resource "aws_ecs_cluster" "my_cluster" {
@@ -119,25 +119,4 @@ resource "aws_ecs_service" "dummy_api_service" {
   }
 }
 
-################################
 
-#           Outputs            #
-
-################################
-
-output "aws_ecr_registry_id" {
-
-value = aws_ecr_repository.my_second_repo.registry_id
-
-}
-
-
-
-
-output "aws_ecr_repository_url" {
-
- value = aws_ecr_repository.my_second_repo.repository_url
-
-}
-
-*/
