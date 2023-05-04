@@ -67,19 +67,3 @@ variable "ecs_task_execution_role" {
   description = "ECS Task Execution Role name"
 }
 
-
-
-
-output "aws_ecr_registry_id" {
-
-value = aws_ecr_repository.my_second_repo.registry_id
-
-}
-
-
-
-output "aws_ecr_repository_url" {
-
- value = aws_ecr_repository.my_second_repo.repository_url
-
-}
