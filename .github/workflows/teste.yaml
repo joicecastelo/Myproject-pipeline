@@ -236,7 +236,7 @@ jobs:
         # Docker Image to deploy through an ECS Task 
         TF_VAR_docker_image_name: ${{ needs.create_ecr_registry.outputs.aws_ecr_repository_url }}:${{ needs.build.outputs.ecr_image_tag }}
       id: plan
-      working-directory: terraform
+      working-directory: terraform/ECR
       run: |
         echo "Docker Image Name: $TF_VAR_docker_image_name"
         terraform plan -no-color -input=false
@@ -262,4 +262,5 @@ jobs:
         echo "::set-output name=api_url::$(terraform-bin output -raw alb_address)"
     outputs:
       api_url: ${{ steps.terraform_apply_testing_environment.outputs.api_url }}
+
 
