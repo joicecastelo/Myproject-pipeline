@@ -1,12 +1,5 @@
 
 #-------Create VPC 
-resource "aws_flow_log" "flow" {
-  iam_role_arn    = "arn"
-  log_destination = "log"
-  traffic_type    = "ALL"
- vpc_id          = aws_vpc.project_ecs.id
-}
-
 
 resource "aws_vpc" "project_ecs" {
   cidr_block = var.cidr

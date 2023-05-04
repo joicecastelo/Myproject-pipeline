@@ -71,7 +71,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   [
     {
       "name": "dummy_api",
-      "image": "${aws_ecr_repository.my_second_repo.repository_url}",
+      "image": "tmf632-party-mgmt-api",
       "essential": true,
       "portMappings": [
         {
