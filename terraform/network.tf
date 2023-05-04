@@ -148,3 +148,65 @@ resource "aws_route_table" "public_b" {
   }
 }
 
+# Criar Load balancer
+
+resource "aws_alb" "alb" {
+  name = "dummy-api-ecs-alb"
+  #internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.lb_security.id]
+  subnets            = [aws_subnet.public_east_a.id, aws_subnet.public_east_b.id]
+
+}
+
+
+
+# Criar target grupo
+
+resource "aws_lb_target_group" "mydummy_api_tg" {
+  name        = "mydummy-api-tg"
+  port        = 80
+  protocol    = "HTTP"
+  target_type = "ip"
+  vpc_id      = aws_vpc.project_ecs.id
+
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    matcher             = "200"
+    path                = var.health_check_path
+    interval            = 30
+
+  }
+}
+
+
+
+
+
+#Create and ALB Listener that points to the Target Group just created
+
+resource "aws_lb_listener" "dummy_api_listener" {
+  load_balancer_arn = aws_alb.alb.arn
+
+  port     = "80"
+  protocol = "HTTP"
+  default_action {
+
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.mydummy_api_tg.arn
+  }
+
+
+  tags = {
+    Terraform   = "true"
+    Environment = "${var.environment}"
+  }
+
+}
+
+
+
+
+

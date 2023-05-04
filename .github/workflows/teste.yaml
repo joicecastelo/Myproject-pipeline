@@ -263,4 +263,3 @@ jobs:
     outputs:
       api_url: ${{ steps.terraform_apply_testing_environment.outputs.api_url }}
 
-
