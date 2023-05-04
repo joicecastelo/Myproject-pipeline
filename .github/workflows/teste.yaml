@@ -198,7 +198,7 @@ jobs:
 
 
 
-deploy_testing_environment:
+  deploy_testing_environment:
     name: Deploy Solution's Testing Environment
     runs-on: ubuntu-latest
     needs: [build, create_ecr_registry] 
@@ -262,4 +262,4 @@ deploy_testing_environment:
         echo "::set-output name=api_url::$(terraform-bin output -raw alb_address)"
     outputs:
       api_url: ${{ steps.terraform_apply_testing_environment.outputs.api_url }}
-      
+
