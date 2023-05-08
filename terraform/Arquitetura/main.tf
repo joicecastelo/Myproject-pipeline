@@ -70,12 +70,12 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   [
     {
       "name": "dummy_api",
-      "image": "tmf632-party-mgmt-api",
+      "image": "${var.docker_image_name}",
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 8000,
-          "hostPort": 8000
+          "containerPort": 80,
+          "hostPort": 80
         }
       ],
       "memory": 1024,
@@ -102,7 +102,7 @@ resource "aws_ecs_service" "dummy_api_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.mydummy_api_tg.arn
     container_name   = "dummy_api"
-    container_port   = 8000
+    container_port   = 80
 
   }
 
