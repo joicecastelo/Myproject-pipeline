@@ -289,6 +289,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Wait for API to be Running
+        env:
+          WAIT_FOR_ENDPOINT_URL: ${{ needs.deploy_testing_environment.outputs.api_url }}/healthcheck/
+        working-directory: robot_tests
+        run: |
+          echo "HEALTHCHECK_ENDPOINT: $URL"
+          python waitForAPI.py
+
 
       - name: Run E2E Tests
         env:

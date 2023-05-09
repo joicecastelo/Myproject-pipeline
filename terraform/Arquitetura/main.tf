@@ -91,7 +91,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   container_definitions = <<DEFINITION
   [
     {
-      "name": "dummy_api",
+      "name": "base_api",
       "image": "${var.docker_image_name}",
       "essential": true,
       "portMappings": [
@@ -111,7 +111,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
 
 resource "aws_ecs_service" "dummy_api_service" {
 
-  name            = "dummy_api"    
+  name            = "base_api"    
   depends_on =[aws_ecs_task_definition.dummy_api_task]                           # Naming our first service
   cluster         = aws_ecs_cluster.my_cluster.id             # Referencing our created Cluster
   task_definition = aws_ecs_task_definition.dummy_api_task.id # Referencing the task our service will spin up
@@ -124,7 +124,7 @@ resource "aws_ecs_service" "dummy_api_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.mydummy_api_tg.arn
-    container_name   = "dummy_api"
+    container_name   = "base_api"
     container_port   = 80
 
   }
