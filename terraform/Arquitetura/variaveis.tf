@@ -70,8 +70,7 @@ variable "ecs_task_execution_role" {
 
 variable "docker_image_name" {}
 
-
-
-
-
-
+output "alb_address" {
+  #value = "http://${module.Arquiteura.alb_address}"
+  value = aws_alb.alb.dns_name
+}
