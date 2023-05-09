@@ -262,6 +262,7 @@ jobs:
         echo "::set-output name=api_url::$(terraform-bin output -raw alb_address)"
     outputs:
       api_url: ${{ steps.terraform_apply_testing_environment.outputs.api_url }}
+      
 
      
 
