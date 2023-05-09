@@ -288,3 +288,12 @@ jobs:
         working-directory: robot_tests
         run: |
           pip install -r requirements.txt
+
+
+      - name: Run E2E Tests
+        env:
+          API_BASE_URL: ${{ needs.deploy_testing_environment.outputs.api_url }}
+        working-directory: robot_tests
+        run: |
+          python -m robot .
+      
