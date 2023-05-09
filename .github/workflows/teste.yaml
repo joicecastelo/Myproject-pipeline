@@ -265,5 +265,26 @@ jobs:
       
 
      
+ e2e_testing:
+    needs: deploy_testing_environment
+    name: "End To End Testing"
+    runs-on: ubuntu-latest
+    steps:
 
+      - name: Check out repository code
+        uses: actions/checkout@v2
 
+      # Setup Python (faster than using Python container)
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        working-directory: robot_tests
+        run: |
+          pip install -r requirements.txt
