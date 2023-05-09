@@ -37,8 +37,8 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
-    #sid     = ""
-    #effect  = "Allow"
+    Sid     = ""
+    Effect  = "Allow"
     actions = ["sts:AssumeRole"]
 
     principals {
@@ -94,7 +94,7 @@ resource "aws_ecs_service" "dummy_api_service" {
   task_definition = aws_ecs_task_definition.dummy_api_task.id # Referencing the task our service will spin up
   launch_type     = "FARGATE"
   #platform_version = "LATEST"
-  desired_count = 3 # Numero de container que quero correr são  4}
+  desired_count = 4 # Numero de container que quero correr são  4}
 
 
 
