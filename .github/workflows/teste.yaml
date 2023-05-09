@@ -264,7 +264,7 @@ jobs:
       api_url: ${{ steps.terraform_apply_testing_environment.outputs.api_url }}
       
 
-     
+    #Teste de robo 
  e2e_testing:
     needs: deploy_testing_environment
     name: "End To End Testing"
