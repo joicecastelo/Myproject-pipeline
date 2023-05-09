@@ -35,6 +35,28 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
+
+resource "aws_iam_role" "ecs_task_role" {
+  name = "role-name"
+ 
+  assume_role_policy = <<EOF
+{
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Action": "sts:AssumeRole",
+     "Principal": {
+       "Service": "ecs-tasks.amazonaws.com"
+     },
+     "Effect": "Allow",
+     "Sid": ""
+   }
+ ]
+}
+EOF
+}
+
+
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
     #sid     = ""
@@ -64,7 +86,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   memory                   = 2048        # Specifying the memory our container requires
   cpu                      = 512         # Specifying the CPU our container requires
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-
+  task_role_arn = aws_iam_role.ecs_task_role.arn
 
   container_definitions = <<DEFINITION
   [
@@ -89,11 +111,12 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
 
 resource "aws_ecs_service" "dummy_api_service" {
 
-  name            = "dummy_api"                               # Naming our first service
+  name            = "dummy_api"    
+  depends_on =[aws_ecs_task_definition.dummy_api_task]                           # Naming our first service
   cluster         = aws_ecs_cluster.my_cluster.id             # Referencing our created Cluster
   task_definition = aws_ecs_task_definition.dummy_api_task.id # Referencing the task our service will spin up
   launch_type     = "FARGATE"
-  #platform_version = "LATEST"
+  
   desired_count = 4 # Numero de container que quero correr são  4}
 
 
@@ -105,6 +128,12 @@ resource "aws_ecs_service" "dummy_api_service" {
     container_port   = 80
 
   }
+
+  lifecycle {
+    ignore_changes = [task_definition]
+  }
+
+
 
 
   #depends_on = [aws_lb_listener.dummy_api_listener,aws_iam_role_policy_attachment.ecsTaskExecutionRole_policy]
