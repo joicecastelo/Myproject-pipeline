@@ -37,8 +37,8 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
-    Sid     = ""
-    Effect  = "Allow"
+    #sid     = ""
+    #effect  = "Allow"
     actions = ["sts:AssumeRole"]
 
     principals {
