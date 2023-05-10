@@ -13,7 +13,7 @@ locals {
 
 module "Network" {
   source               = "./modules/Network"
-  #aws_region           = "us-east-1"
+  aws_region           = "us-east-1"
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   
