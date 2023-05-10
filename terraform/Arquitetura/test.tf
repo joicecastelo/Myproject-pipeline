@@ -22,9 +22,9 @@ module "Network" {
   public_subnet_b      = var.public_cidr_b
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
-  */
-  availability_zones = local.testing_availability_zones
   
+  availability_zones = local.testing_availability_zones
+  */
 }
 
 
