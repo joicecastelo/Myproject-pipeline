@@ -57,7 +57,7 @@ variable "environment" {
   default     = "testing"
 }
 variable "availability_zones" {
-  type        = list(any)
+  type        = string
   description = "AZ in which all the resources will be deployed"
 }
 
