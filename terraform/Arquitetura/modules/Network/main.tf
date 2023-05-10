@@ -2,7 +2,9 @@
 #-------Create VPC 
 
 resource "aws_vpc" "project_ecs" {
-  cidr_block = var.cidr
+  cidr_block = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
   tags = {
     Name = "My VPC"
@@ -147,66 +149,33 @@ resource "aws_route_table" "public_b" {
 
   }
 }
-
-# Criar Load balancer
-
-resource "aws_alb" "alb" {
-  name = "dummy-api-ecs-alb"
-  
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb_security.id]
-  subnets            = [aws_subnet.public_east_a.id, aws_subnet.public_east_b.id]
-
+# Associacão do route publico a
+resource "aws_route_table_association" "public_b" {
+  subnet_id      = aws_subnet.public_east_b.id
+  route_table_id = aws_route_table.public_b.id
 }
 
 
 
-# Criar target grupo
-
-resource "aws_lb_target_group" "mydummy_api_tg" {
-  name        = "mydummy-api-tg"
-  port        = 80
-  protocol    = "HTTP"
-  target_type = "ip"
-  vpc_id      = aws_vpc.project_ecs.id
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    matcher             = "200"
-    path                = var.health_check_path
-    interval            = 30
-
-  }
-}
-
-
-
-
-
-#Create and ALB Listener that points to the Target Group just created
-
-resource "aws_lb_listener" "dummy_api_listener" {
-  load_balancer_arn = aws_alb.alb.arn
-
-  port     = "80"
-  protocol = "HTTP"
-  default_action {
-
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.mydummy_api_tg.arn
-  }
-
-
+# Route table privado b 
+resource "aws_route_table" "private_b" {
+  vpc_id = aws_vpc.project_ecs.id
   tags = {
-    Terraform   = "true"
-    Environment = "${var.environment}"
+    Name = " route table privada 2"
   }
 
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw.id
+
+  }
 }
 
-
+# Associação route table private a
+resource "aws_route_table_association" "private_b" {
+  subnet_id      = aws_subnet.private_east_b.id
+  route_table_id = aws_route_table.private_b.id
+}
 
 
 

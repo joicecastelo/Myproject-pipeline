@@ -1,7 +1,7 @@
+variable "environment" {
+  description = "Deployment Environment"
+}
 
-variable "aws_access_key_id" {}
-variable "aws_secret_access_key" {}
-variable "docker_image_name" {}
 
 variable "region" {
   description = "region to use for AWS resources"
@@ -21,9 +21,6 @@ variable "region_b" {
 }
 
 
-variable "health_check_path" {
-  default = "/"
-}
 
 
 variable "vpc_cidr" {
@@ -62,11 +59,9 @@ variable "environment" {
   description = "Deployment Environment"
   default     = "testing"
 }
-
-
-variable "ecs_task_execution_role" {
-  default     = "myECcsTaskExcecutionRole"
-  description = "ECS Task Execution Role name"
+variable "availability_zones" {
+  type        = list(any)
+  description = "AZ in which all the resources will be deployed"
 }
 
 
