@@ -16,7 +16,7 @@ module "Network" {
   aws_region           = var.aws_region
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
-  public_cidr_a  = var.public_cidr_a
+  public_cidr_a        = var.public_cidr_a
   public_cidr_b  = var.public_cidr_b
   private_cidr_a  = var.private_cidr_a
   private_cidr_b  = var.private_cidr_b
