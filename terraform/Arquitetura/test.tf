@@ -4,16 +4,16 @@ resource "random_id" "random_id_prefix" {
 }
 
 
-/*
+
 locals {
   testing_availability_zones = ["${var.aws_region}a", "${var.aws_region}b"] #, "${var.aws_region}b", "${var.aws_region}c"]
 }
 
-*/
+
 
 module "Network" {
   source               = "./modules/Network"
-  aws_region           = "us-east-1"
+  #aws_region           = "us-east-1"
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   
@@ -22,8 +22,9 @@ module "Network" {
   public_subnet_b      = var.public_cidr_b
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
-  availability_zones = local.testing_availability_zones
   */
+  availability_zones = local.testing_availability_zones
+  
 }
 
 
