@@ -72,11 +72,12 @@ variable "docker_image_name" {}
 
 
 
+
+
 #outputs
 
 output "alb_address" {
-  value = "http://${module.Computing-ECS.alb_address}"
-  
+  value = aws_alb.alb.dns_name
 }
 
 output "aws_ecs_cluster_id" {

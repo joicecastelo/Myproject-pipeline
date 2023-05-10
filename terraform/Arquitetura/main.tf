@@ -8,13 +8,34 @@ terraform {
     }
   }
 
+
+backend "s3" {
+    bucket = "mybucketjoice"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+  }
 }
+
+
 
 provider "aws" {
   region = "us-east-1"
 }
 
 
+
+resource "aws_cloudwatch_log_group" "base_api_client" {
+  name = "base-api-client"
+
+  tags = {
+    Environment = var.environment
+  }
+}
+
+resource "aws_cloudwatch_log_stream" "base_api_client" {
+  name           = "base-api-client"
+  log_group_name = aws_cloudwatch_log_group.base_api_client.name
+}
 
 
 
@@ -98,10 +119,24 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
         {
           "containerPort": 80,
           "hostPort": 80
+          "memory": 1024,
+          "cpu": 512
+
         }
       ],
-      "memory": 1024,
-      "cpu": 512
+      
+
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "base-api-client",
+          "awslogs-stream-prefix": "base-api-client",
+          "awslogs-region": "us-east-1"
+        }
+      },
+      "environment": [
+        {"name": "APP_ENV", "value": "test"}
+      
     }
   ]
   DEFINITION
