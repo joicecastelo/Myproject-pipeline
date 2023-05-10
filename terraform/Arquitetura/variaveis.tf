@@ -91,3 +91,7 @@ output "aws_ecs_service_name" {
 output "aws_ecs_service_id" {
   value = aws_ecs_service.dummy_api_service.id
 }
+
+
+variable "aws_access_key_id" {}
+variable "aws_secret_access_key" {}
