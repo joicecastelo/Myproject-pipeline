@@ -1,6 +1,3 @@
-variable "environment" {
-  description = "Deployment Environment"
-}
 
 
 variable "region" {
