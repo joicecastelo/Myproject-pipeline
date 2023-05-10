@@ -42,7 +42,7 @@ module "Computing-ECS" {
   private_subnet_a =  module.Network.private_cidr_a
   private_subnet_b =  module.Network.private_cidr_b
 */
-  availability_zone = local.testing_availability_zones
+  availability_zones= local.testing_availability_zones
 
   
 }
