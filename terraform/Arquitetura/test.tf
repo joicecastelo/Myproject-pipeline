@@ -4,8 +4,8 @@ resource "random_id" "random_id_prefix" {
 }
 
 
-
 /*
+
 locals {
   testing_availability_zones = ["${var.aws_region}a", "${var.aws_region}b"] 
 }
@@ -24,9 +24,8 @@ module "Network" {
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
   
-  */
   availability_zone = [var.region_a, var.region_b]
-  
+  */
 }
 
 
