@@ -6,14 +6,14 @@ resource "random_id" "random_id_prefix" {
 
 
 locals {
-  testing_availability_zones = ["${var.aws_region}a", "${var.aws_region}b"] 
+  testing_availability_zones = ["${var.region}a", "${var.region}b"] 
 }
 
 
 
 module "Network" {
   source               = "./modules/Network"
-  aws_region           = var.region
+  region           = var.region
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   
