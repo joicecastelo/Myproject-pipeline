@@ -25,7 +25,8 @@ module "Network" {
   private_subnet_b  = var.private_cidr_b
   
   */
-  availability_zones = [var.region_a, var.region_b]
+   availability_zone = ["${var.aws_region_a}" , "${var.aws_region_b}"]
+
   
 }
 
@@ -45,7 +46,7 @@ module "Computing-ECS" {
   private_subnet_b =  module.Network.private_cidr_b
 
 */
-  availability_zones = [var.region_a, var.region_b]
+  availability_zone = ["${var.aws_region_a}" , "${var.aws_region_b}"]
 
   
 }
