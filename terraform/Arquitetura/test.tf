@@ -5,10 +5,11 @@ resource "random_id" "random_id_prefix" {
 
 
 
+/*
 locals {
   testing_availability_zones = ["${var.aws_region}a", "${var.aws_region}b"] 
 }
-
+*/
 
 
 module "Network" {
@@ -23,8 +24,9 @@ module "Network" {
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
   
-  availability_zones = local.testing_availability_zones
   */
+  availability_zones = [var.region_a, var.region_b]
+  
 }
 
 
@@ -41,8 +43,10 @@ module "Computing-ECS" {
   public_subnet_b  =  module.Network.public_cidr_b
   private_subnet_a =  module.Network.private_cidr_a
   private_subnet_b =  module.Network.private_cidr_b
-  availability_zones = local.testing_availability_zones
+
 */
+  availability_zones = [var.region_a, var.region_b]
+
   
 }
 
