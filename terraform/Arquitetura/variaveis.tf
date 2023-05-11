@@ -5,7 +5,7 @@ variable "aws_secret_access_key" {}
 variable "docker_image_name" {}
 
 
-/*
+
 variable "region" {
   description = "region to use for AWS resources"
   type        = string
@@ -77,7 +77,6 @@ variable "vpc_id" {
   
 }
 
-*/
 
 
 
