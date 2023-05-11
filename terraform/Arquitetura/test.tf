@@ -1,5 +1,5 @@
-/*
 
+/*
 
 resource "random_id" "random_id_prefix" {
   byte_length = 2
@@ -24,6 +24,7 @@ module "Network" {
   public_subnet_b      = var.public_cidr_b
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
+  
   
   availability_zones = local.testing_availability_zones
   
@@ -53,6 +54,7 @@ module "Computing-ECS" {
   
 }
 
+
 output "vpc_id" {  
   value = module.Network.vpc_id
 }
@@ -77,6 +79,5 @@ output "aws_ecs_service_name" {
 output "aws_ecs_service_id" {
   value = module.Computing-ECS.aws_ecs_service_id
 }
-
 
 */
