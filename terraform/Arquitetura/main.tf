@@ -29,6 +29,16 @@ provider "aws" {
 
 
 
+
+
+resource "aws_cloudwatch_log_group" "base_api" {
+  name = "base-api"
+
+  tags = {
+    Environment = var.environment
+  }
+}
+
 resource "aws_cloudwatch_log_stream" "base_api" {
   name           = "base-api"
   log_group_name = aws_cloudwatch_log_group.base_api.name
