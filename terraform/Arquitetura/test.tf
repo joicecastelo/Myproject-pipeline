@@ -27,7 +27,10 @@ module "Network" {
   
 }
 
-
+resource "vpc_id" "Network" {
+  name= module.Network.vpc_id
+  
+}
 module "Computing-ECS" {
 
   source               = "./modules/Computing-ECS"
