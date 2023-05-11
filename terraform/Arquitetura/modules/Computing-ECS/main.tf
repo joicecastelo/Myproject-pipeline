@@ -1,3 +1,5 @@
+/*
+
 resource "aws_vpc" "project_ecs" {
   cidr_block = var.vpc_cidr
 
@@ -52,7 +54,7 @@ resource "aws_subnet" "private_east_b" {
   }
 }
 
-
+*/
 
 resource "aws_cloudwatch_log_group" "base_api" {
   name = "base-api"
