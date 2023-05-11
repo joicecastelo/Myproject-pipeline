@@ -59,7 +59,7 @@ variable "environment" {
 
 
 variable "availability_zones" {
-  type        = string
+  type        = list(any)
   description = "AZ in which all the resources will be deployed"
 }
 
