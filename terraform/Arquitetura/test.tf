@@ -17,12 +17,12 @@ module "Network" {
   environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   
-  
-  public_subnet_cidr_a      = var.public_cidr_a
-  public_subnet_cidr_b      = var.public_cidr_b
-  private_subnet_cidr_a     = var.private_cidr_a
-  private_subnet_cidr_b     = var.private_cidr_b
-  
+  /*
+  public_subnet_a      = var.public_cidr_a
+  public_subnet_b      = var.public_cidr_b
+  private_subnet_a     = var.private_cidr_a
+  private_subnet_b  = var.private_cidr_b
+  */
   availability_zones = local.testing_availability_zones
   
 }
@@ -35,6 +35,8 @@ module "Computing-ECS" {
   docker_image_name    = var.docker_image_name
   environment          = var.environment
   vpc_id               = module.Network.vpc_id
+  availability_zones= local.testing_availability_zones
+
 
 /*
   public_subnet_a      = module.Network.public_cidr_a
