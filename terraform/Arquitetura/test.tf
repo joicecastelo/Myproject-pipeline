@@ -1,3 +1,5 @@
+/*
+
 
 resource "random_id" "random_id_prefix" {
   byte_length = 2
@@ -22,15 +24,14 @@ module "Network" {
   public_subnet_b      = var.public_cidr_b
   private_subnet_a     = var.private_cidr_a
   private_subnet_b  = var.private_cidr_b
-  */
+  
   availability_zones = local.testing_availability_zones
   
 }
 
-resource "vpc_id" "Network" {
-  name= module.Network.vpc_id
+
   
-}
+
 module "Computing-ECS" {
 
   source               = "./modules/Computing-ECS"
@@ -47,7 +48,7 @@ module "Computing-ECS" {
   private_subnet_a =  module.Network.private_cidr_a
   private_subnet_b =  module.Network.private_cidr_b
   availability_zones= local.testing_availability_zones
-  */
+  
 
   
 }
@@ -76,3 +77,6 @@ output "aws_ecs_service_name" {
 output "aws_ecs_service_id" {
   value = module.Computing-ECS.aws_ecs_service_id
 }
+
+
+*/
