@@ -1,3 +1,6 @@
+
+/*
+
 #-------Create VPC 
 
 resource "aws_vpc" "project_ecs" {
@@ -178,3 +181,4 @@ resource "aws_route_table_association" "private_b" {
 
 
 
+*/

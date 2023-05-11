@@ -1,3 +1,6 @@
+
+/*
+
 variable "docker_image_name" {}
 
 
@@ -74,3 +77,4 @@ variable "ecs_task_execution_role" {
 }
 
 
+*/
