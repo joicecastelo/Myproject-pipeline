@@ -29,9 +29,6 @@ provider "aws" {
 
 
 
-
-
-
 resource "aws_vpc" "project_ecs" {
   cidr_block = var.vpc_cidr
 
@@ -207,66 +204,6 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
 }
 
 
-#grupo de segrança para ALB
-
-resource "aws_security_group" "lb_security" {
-  name        = "alb_security"
-  description = "controls acess to the ALB"
-  vpc_id      = aws_vpc.project_ecs.id
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "What does this rule enable"
-
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-  tags = {
-    Name = "ALB security Group"
-  }
-}
-
-
-
-# Grupo de seguranca ECS
-
-resource "aws_security_group" "ecs_security" {
-  name = "ecs-tasks-security"
-  description = "allow inbound acess from Athe LB only"
-  vpc_id = aws_vpc.project_ecs.id
-
-  ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = [aws_security_group.lb_security.id]
-    description = "What does this rule enable"
-
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
-
-  tags = {
-    Name = "ECS security Group"
-  }
-}
 
 
 # Criar Load balancer
@@ -379,4 +316,7 @@ resource "aws_ecs_service" "dummy_api_service" {
 
   }
 }
+
+
+
 
