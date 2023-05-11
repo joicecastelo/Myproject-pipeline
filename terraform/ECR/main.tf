@@ -12,7 +12,7 @@ resource "aws_ecr_repository" "my_second_repo" {
   encryption_configuration {                                # Added after checkov analysis
     encryption_type                 = "KMS"                   
   }
-  force_delete                    = true
+  #force_delete                    = true
 
   
 }
