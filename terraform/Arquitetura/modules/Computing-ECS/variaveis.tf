@@ -8,3 +8,4 @@ variable "environment" {
 variable "vpc_id" {
   description = "ID of the vpc"
 }
+
