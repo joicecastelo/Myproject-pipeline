@@ -1,3 +1,4 @@
+/*
 
 
 resource "aws_vpc" "project_ecs" {
@@ -347,3 +348,5 @@ resource "aws_ecs_service" "dummy_api_service" {
 
   }
 }
+
+*/
