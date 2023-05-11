@@ -6,6 +6,31 @@ resource "aws_vpc" "project_ecs" {
   }
 }
 
+
+
+resource "aws_subnet" "public_east_a" {
+  vpc_id            = aws_vpc.project_ecs.id
+  cidr_block        = var.public_cidr_a
+  availability_zone = var.region_a
+
+  tags = {
+    Name = "Public East A"
+  }
+}
+
+resource "aws_subnet" "public_east_b" {
+  vpc_id            = aws_vpc.project_ecs.id
+  cidr_block        = var.public_cidr_b
+  availability_zone = var.region_b
+
+
+  tags = {
+    Name = "Public East B"
+  }
+}
+
+
+
 resource "aws_cloudwatch_log_group" "base_api" {
   name = "base-api"
 
