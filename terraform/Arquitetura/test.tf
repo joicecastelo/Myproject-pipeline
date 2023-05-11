@@ -35,8 +35,8 @@ module "Computing-ECS" {
   docker_image_name    = var.docker_image_name
   environment          = var.environment
   vpc_id               = module.Network.vpc_id
-  availability_zones= local.testing_availability_zones
 
+  
 
 /*
   public_subnet_a      = module.Network.public_cidr_a
@@ -49,7 +49,9 @@ module "Computing-ECS" {
   
 }
 
-
+output "vpc_id" {  
+  value = module.Network.vpc_id
+}
 
 
 output "alb_domain" {
