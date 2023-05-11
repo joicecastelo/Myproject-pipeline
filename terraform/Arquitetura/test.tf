@@ -34,7 +34,7 @@ module "Computing-ECS" {
   depends_on           = [module.Network]
   docker_image_name    = var.docker_image_name
   environment          = var.environment
-  vpc_id               = module.Network.vpc_id
+  #vpc_id               = module.Network.vpc_id
 
 /*
   public_subnet_a      = module.Network.public_cidr_a
