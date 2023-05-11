@@ -29,6 +29,29 @@ resource "aws_subnet" "public_east_b" {
   }
 }
 
+#--------Create Private subnets for ECS
+
+resource "aws_subnet" "private_east_a" {
+  vpc_id            = aws_vpc.project_ecs.id
+  cidr_block        = var.private_cidr_a
+  availability_zone = var.region_a
+
+  tags = {
+    Name = "Private East A"
+  }
+}
+
+resource "aws_subnet" "private_east_b" {
+  vpc_id            = aws_vpc.project_ecs.id
+  cidr_block        = var.private_cidr_b
+  availability_zone = var.region_b
+
+
+  tags = {
+    Name = "Private East B"
+  }
+}
+
 
 
 resource "aws_cloudwatch_log_group" "base_api" {

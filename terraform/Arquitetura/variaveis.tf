@@ -69,6 +69,10 @@ variable "ecs_task_execution_role" {
   description = "ECS Task Execution Role name"
 }
 
+variable "vpc_id" {
+  type =string
+  
+}
 
 
 
