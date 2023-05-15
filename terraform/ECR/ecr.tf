@@ -1,4 +1,5 @@
 
+/*
 terraform {
   required_version = ">= 1.0.7"
   required_providers {
@@ -11,7 +12,7 @@ terraform {
 
 backend "s3" {
     bucket = "mybucketjoice"
-    key    = "ecr_terraform.tfstate"
+    key    = "terraform.tfstate"
     region = "us-east-1"
   }
 
@@ -27,3 +28,4 @@ provider "aws" {
  
 }
 
+*/
