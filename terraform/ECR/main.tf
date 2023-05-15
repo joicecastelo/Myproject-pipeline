@@ -18,11 +18,10 @@ resource "aws_ecr_repository" "my_second_repo" {
 }
 
 
-################################
 
-#           Outputs            #
 
-################################
+#  Outputs           
+
 
 output "aws_ecr_registry_id" {
 
