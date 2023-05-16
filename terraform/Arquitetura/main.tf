@@ -38,8 +38,6 @@ provider "aws" {
 
 
 
-
-
 resource "aws_cloudwatch_log_group" "base_api" {
   name = "base-api"
 
