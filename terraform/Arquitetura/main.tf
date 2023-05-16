@@ -7,8 +7,9 @@ terraform {
       version = "4.65.0"
     }
   }
+}
 
-
+/*
 backend "s3" {
     bucket = "mybucketjoice"
     key    = "terraform.tfstate"
@@ -18,7 +19,7 @@ backend "s3" {
 
 }
 
-/*
+
 
 provider "aws" {
   region = "us-east-1"
@@ -29,10 +30,6 @@ provider "aws" {
 
 */
 
-
-provider "aws" {
-  region = "us-east-1"
-}
 
 
 
