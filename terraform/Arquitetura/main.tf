@@ -36,7 +36,7 @@ provider "aws" {
 }
 
 
-
+/*
 
 resource "aws_cloudwatch_log_group" "base_api" {
   name = "base-api"
@@ -49,7 +49,7 @@ resource "aws_cloudwatch_log_stream" "base_api" {
   log_group_name = aws_cloudwatch_log_group.base_api.name
 }
 
-
+*/
 
 #Criar cluster
 resource "aws_ecs_cluster" "my_cluster" {
@@ -72,7 +72,7 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 }
 
 
-
+/*
 
 resource "aws_iam_role" "ecs_task_role" {
   name = "role-name"
@@ -93,7 +93,7 @@ resource "aws_iam_role" "ecs_task_role" {
 }
 EOF
 }
-
+*/
 
 
 data "aws_iam_policy_document" "assume_role_policy" {
@@ -123,42 +123,28 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   memory                   = 2048        # Specifying the memory our container requires
   cpu                      = 512         # Specifying the CPU our container requires
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-  task_role_arn = aws_iam_role.ecs_task_role.arn
+  #task_role_arn = aws_iam_role.ecs_task_role.arn
 
+  
   container_definitions = <<DEFINITION
   [
     {
-      "name": "dummy_task",
-      "image": "${var.docker_image_name}",
+      "name": "dummy_api",
+      "image": "${aws_ecr_repository.my_second_repo.repository_url}",
       "essential": true,
-      "memory": 1024,
-      "cpu": 512,
-
       "portMappings": [
         {
-          "containerPort": 80,
-          "hostPort": 80
-          
-
+          "containerPort": 8000,
+          "hostPort": 8000
         }
       ],
-      
-
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "base-api",
-          "awslogs-stream-prefix": "base-api",
-          "awslogs-region": "us-east-1"
-        }
-      },
-      "environment": [
-        {"name": "APP_ENV", "value": "test"}
-     ] 
+      "memory": 1024,
+      "cpu": 512
     }
   ]
   DEFINITION
 }
+
 
 
 
