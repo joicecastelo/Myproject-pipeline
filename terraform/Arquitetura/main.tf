@@ -44,6 +44,7 @@ resource "aws_cloudwatch_log_group" "base_api" {
   
 }
 
+
 resource "aws_cloudwatch_log_stream" "base_api" {
   name           = "base-api"
   log_group_name = aws_cloudwatch_log_group.base_api.name
