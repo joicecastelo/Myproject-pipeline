@@ -19,16 +19,14 @@ backend "s3" {
 
 }
 
-
+*/
 
 provider "aws" {
   region = "us-east-1"
-  access_key = var.aws_access_key_id
-  secret_key = var.aws_secret_access_key
+ # access_key = var.aws_access_key_id
+  #secret_key = var.aws_secret_access_key
  
 }
-
-*/
 
 
 
@@ -120,7 +118,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   memory                   = 2048        # Specifying the memory our container requires
   cpu                      = 512         # Specifying the CPU our container requires
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-  #task_role_arn = aws_iam_role.ecs_task_role.arn
+  task_role_arn = aws_iam_role.ecs_task_role.arn
 
   container_definitions = <<DEFINITION
   [
