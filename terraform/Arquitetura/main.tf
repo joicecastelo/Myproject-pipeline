@@ -2,14 +2,21 @@
 terraform {
   required_version = ">= 1.0.7"
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.65.0"
+    docker = {
+      source = "kreuzwerker/docker"
+      version = "~> 2.20.0"
     }
-  }
-}
 
-/*
+
+    aws = {
+      source = "hashicorp/aws"
+      version = ">= 1.0.0"
+    }
+  
+  }
+
+
+
 backend "s3" {
     bucket = "mybucketjoice"
     key    = "terraform.tfstate"
@@ -19,12 +26,12 @@ backend "s3" {
 
 }
 
-*/
+
 
 provider "aws" {
   region = "us-east-1"
- # access_key = var.aws_access_key_id
-  #secret_key = var.aws_secret_access_key
+  access_key = "AKIAXP4IUK56DENUKUGO"
+  secret_key = "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"
  
 }
 
