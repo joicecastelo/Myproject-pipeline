@@ -1,4 +1,4 @@
-/*
+
 terraform {
   required_version = ">= 1.0.7"
   required_providers {
@@ -27,7 +27,7 @@ provider "aws" {
  
 }
 
-*/
+
 
 provider "aws" {
   region = "us-east-1"
@@ -39,9 +39,7 @@ provider "aws" {
 resource "aws_cloudwatch_log_group" "base_api" {
   name = "base-api"
 
-  tags = {
-    Environment = var.environment
-  }
+  
 }
 
 resource "aws_cloudwatch_log_stream" "base_api" {
@@ -72,6 +70,8 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 }
 
 
+/*
+
 resource "aws_iam_role" "ecs_task_role" {
   name = "role-name"
  
@@ -92,6 +92,7 @@ resource "aws_iam_role" "ecs_task_role" {
 EOF
 }
 
+*/
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
@@ -107,7 +108,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
   role       = aws_iam_role.ecsTaskExecutionRole.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 
 }
 
@@ -120,7 +121,7 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   memory                   = 2048        # Specifying the memory our container requires
   cpu                      = 512         # Specifying the CPU our container requires
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-  task_role_arn = aws_iam_role.ecs_task_role.arn
+  #task_role_arn = aws_iam_role.ecs_task_role.arn
 
   container_definitions = <<DEFINITION
   [
