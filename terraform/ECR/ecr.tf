@@ -1,5 +1,5 @@
 
-
+/*
 terraform {
   required_version = ">= 1.0.7"
   required_providers {
@@ -12,7 +12,7 @@ terraform {
 
 }
 
-/*
+
 backend "s3" {
     bucket = "mybucketjoice"
     key    = "terraform.tfstate"
@@ -32,3 +32,5 @@ provider "aws" {
 }
 
 */
+
+

@@ -49,13 +49,16 @@ resource "aws_cloudwatch_log_stream" "base_api" {
 #Criar cluster
 resource "aws_ecs_cluster" "my_cluster" {
   name = "my-cluster" # Nome do cluster
+}
 
+/*
 setting {
    name  = "containerInsights"
    value = "enabled"
  }
 }
 
+*/
 
 
 resource "aws_iam_role" "ecsTaskExecutionRole" {
