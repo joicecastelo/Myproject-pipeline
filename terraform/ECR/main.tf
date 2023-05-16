@@ -11,7 +11,10 @@ provider "aws" {
 resource "aws_ecr_repository" "my_second_repo" {
   name                 = "my-second-repo" # Nome do meu repositório
 
+}
 
+
+/*
    image_tag_mutability            = "IMMUTABLE"             # Added after checkov analysis
    image_scanning_configuration {                            # Added after checkov analysis
     scan_on_push = true
@@ -23,7 +26,7 @@ resource "aws_ecr_repository" "my_second_repo" {
 
 }
 
-
+*/
 
 
 
