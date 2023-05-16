@@ -67,7 +67,7 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 }
 
 
-/*
+
 
 resource "aws_iam_role" "ecs_task_role" {
   name = "role-name"
@@ -89,7 +89,7 @@ resource "aws_iam_role" "ecs_task_role" {
 EOF
 }
 
-*/
+
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
