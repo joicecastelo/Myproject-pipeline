@@ -136,8 +136,8 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 8000,
-          "hostPort": 8000
+          "containerPort": 80,
+          "hostPort": 80
         }
       ],
       "memory": 1024,
