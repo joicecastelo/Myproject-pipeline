@@ -126,11 +126,12 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   #task_role_arn = aws_iam_role.ecs_task_role.arn
 
   
+     
   container_definitions = <<DEFINITION
   [
     {
       "name": "dummy_api",
-      "image": "${aws_ecr_repository.my_second_repo.repository_url}",
+      "image": "${var.docker_image_name}",
       "essential": true,
       "portMappings": [
         {
@@ -144,8 +145,6 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
   ]
   DEFINITION
 }
-
-
 
 
 
