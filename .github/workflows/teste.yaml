@@ -219,6 +219,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       working-directory: terraform/Arquitetura
       run: terraform init
+      
 
     - name: Terraform Validate
       env:
