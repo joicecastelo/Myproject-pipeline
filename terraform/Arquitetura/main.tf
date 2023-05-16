@@ -1,4 +1,4 @@
-
+/*
 terraform {
   required_version = ">= 1.0.7"
   required_providers {
@@ -19,7 +19,7 @@ backend "s3" {
 }
 
 
-/*
+
 provider "aws" {
   region = "us-east-1"
   access_key = var.aws_access_key_id
@@ -28,6 +28,11 @@ provider "aws" {
 }
 
 */
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 
 
 
