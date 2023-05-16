@@ -237,7 +237,7 @@ resource "aws_ecs_service" "dummy_api_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.mydummy_api_tg.arn
-    container_name   = "base_api"
+    container_name   = "dummy_api"
     container_port   = 80
 
   }
