@@ -346,7 +346,7 @@ jobs:
         terraform destroy -auto-approve
 
 
-delete_ecr_registry:
+  delete_ecr_registry:
     if: always()
     needs: [create_ecr_registry, delete_testing_environment_deployment]
     name: Destroy ECR Registry
