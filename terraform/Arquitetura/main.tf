@@ -36,42 +36,17 @@ provider "aws" {
 }
 
 
-/*
-
-resource "aws_cloudwatch_log_group" "base_api" {
-  name = "base-api"
-
-  
-}
-
-
-resource "aws_cloudwatch_log_stream" "base_api" {
-  name           = "base-api"
-  log_group_name = aws_cloudwatch_log_group.base_api.name
-}
-
-*/
 
 #Criar cluster
 resource "aws_ecs_cluster" "my_cluster" {
   name = "my-cluster" # Nome do cluster
 }
 
-/*
-setting {
-   name  = "containerInsights"
-   value = "enabled"
- }
-}
-
-*/
-
 
 resource "aws_iam_role" "ecsTaskExecutionRole" {
   name               = "ecsTaskExecutionRole"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
-
 
 
 
@@ -118,11 +93,11 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 
 # Definir as tarefas
 resource "aws_ecs_task_definition" "dummy_api_task" {
-  family                   = "service"   # Naming our first task
-  requires_compatibilities = ["FARGATE"] # Stating that we are using ECS Fargate
-  network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
-  memory                   = 2048        # Specifying the memory our container requires
-  cpu                      = 512         # Specifying the CPU our container requires
+  family                   = "service"   
+  requires_compatibilities = ["FARGATE"] 
+  network_mode             = "awsvpc"    
+  memory                   = 2048        
+  cpu                      = 512         
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
   task_role_arn = aws_iam_role.ecs_task_role.arn
 
@@ -230,13 +205,13 @@ resource "aws_lb_listener" "dummy_api_listener" {
 resource "aws_ecs_service" "dummy_api_service" {
 
   name            = "dummy_api"    
-  #depends_on =[aws_ecs_task_definition.dummy_api_task]                           # Naming our first service
-  cluster         = aws_ecs_cluster.my_cluster.id             # Referencing our created Cluster
-  task_definition = aws_ecs_task_definition.dummy_api_task.id # Referencing the task our service will spin up
+  cluster         = aws_ecs_cluster.my_cluster.id            
+  task_definition = aws_ecs_task_definition.dummy_api_task.id 
   launch_type     = "FARGATE"
   
-  desired_count = 4 # Numero de container que quero correr são  4}
+  desired_count = 4 # Numero de container que quero correr são  4
   platform_version = "LATEST"
+
 
 
 
