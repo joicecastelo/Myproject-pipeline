@@ -267,7 +267,7 @@ jobs:
       
 
 
- e2e_testing:
+  e2e_testing:
     needs: deploy_testing_environment
     name: "End To End Testing"
     runs-on: ubuntu-latest
@@ -311,7 +311,7 @@ jobs:
 
 delete_testing_environment_deployment:
     if: always()
-    needs: [build, create_ecr_registry]
+    needs: [build, create_ecr_registry, e2e_testing]
     name: Destroy Testing Environment
     runs-on: ubuntu-latest
     steps:
