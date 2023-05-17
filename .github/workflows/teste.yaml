@@ -372,4 +372,5 @@ jobs:
         TF_VAR_aws_secret_access_key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       working-directory: terraform/ECR
       run: terraform destroy -auto-approve
+
       
