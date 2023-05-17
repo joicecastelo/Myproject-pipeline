@@ -140,6 +140,11 @@ resource "aws_ecs_task_definition" "dummy_api_task" {
           "hostPort": 80
         }
       ],
+      "environment": [
+
+     {"name": "APP_ENV", "value": "test"}
+
+],
       "memory": 1024,
       "cpu": 512
     }
